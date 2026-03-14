@@ -17,5 +17,26 @@ I am also leveraging AI-assisted development to accelerate the coding process, p
 All notable changes to this project will be documented below.
 
 ## [Unreleased]
-- Initializing repository and project structure.
-- Setting up the basic README and documentation.
+### In Progress
+- Frontend setup with React + Vite
+- Leaflet geo map with device markers
+- Device side panel with status indicators
+- Add device modal form
+- Command runner UI (send CLI commands to devices)
+- Auto-polling every 15 seconds
+
+## [0.1.0] - 2026-03-15
+### Added
+- Project structure scaffolded (`backend/`, `frontend/`, `docker-compose.yml`)
+- Docker setup with two containers (`geonoc-backend`, `geonoc-frontend`) on a shared internal network
+- Backend bootstrapped with FastAPI + Uvicorn
+- Netmiko integration for SSH connectivity to network devices (Cisco, Huawei, Nokia)
+- SQLite database with SQLAlchemy ORM
+- Device model with fields: name, host, device_type, username, password, port, lat/lon, status, last_checked
+- REST API routes:
+  - `GET/POST /devices/` — list and create devices
+  - `GET/PUT/DELETE /devices/{id}` — manage individual devices
+  - `GET /connect/poll/{id}` — poll device SSH status
+  - `GET /connect/poll-all` — poll all devices at once
+  - `POST /connect/command/{id}` — run CLI commands via Netmiko
+- `.gitignore` and `.dockerignore` files for backend and frontend

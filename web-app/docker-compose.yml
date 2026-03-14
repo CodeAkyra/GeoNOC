@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: geonoc-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - DATABASE_URL=sqlite:///./geonoc.db
+    networks:
+      - geonoc-net
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: geonoc-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - backend
+    networks:
+      - geonoc-net
+    restart: unless-stopped
+
+networks:
+  geonoc-net:
+    driver: bridge
