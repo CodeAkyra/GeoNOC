@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from typing import Optional, List
 from ..database import get_db
 from ..models import Device
+from datetime import datetime
 
 router = APIRouter()
 
@@ -41,7 +42,7 @@ class DeviceOut(BaseModel):
     lat: float
     lon: float
     status: str
-    last_checked: Optional[str] = None
+    last_checked: Optional[datetime] = None
 
     class Config:
         from_attributes = True
